@@ -2,6 +2,7 @@ from langchain_mcp_adapters.client import MultiServerMCPClient
 from langchain.agents import create_react_agent
 from langchain_groq import ChatGroq
 
+## load the environment
 import os
 from dotenv import load_dotenv
 load_dotenv()
