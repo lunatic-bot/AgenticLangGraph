@@ -1,6 +1,7 @@
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from langchain.agents import create_react_agent
 from langchain_groq import ChatGroq
+from langchain.chat_models import init_chat_model
 
 ## load the environment
 import os
@@ -23,3 +24,17 @@ async def main():
             "transport": "streamable-http",
         }
     })
+
+
+    tools = await client.get_tools()
+    model = init_chat_model("groq:openai/gpt-oss-120b")
+
+    agent = create_react_agent(
+        model, tools
+    )
+
+    math_response = await agent.invoke({"messages" : [{"role" : "user", "content" : "What is 2 + 2?"}]})
+    print("Math response : ",math_response['messages'][-1]['content'])
+
+
+asyncio.run(main())
