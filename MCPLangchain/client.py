@@ -1,5 +1,5 @@
 from langchain_mcp_adapters.client import MultiServerMCPClient
-from langchain.agents import create_react_agent
+from langchain.agents import create_agent
 from langchain_groq import ChatGroq
 from langchain.chat_models import init_chat_model
 
@@ -29,7 +29,7 @@ async def main():
     tools = await client.get_tools()
     model = init_chat_model("groq:openai/gpt-oss-120b")
 
-    agent = create_react_agent(
+    agent = create_agent(
         model, tools
     )
 
