@@ -33,8 +33,8 @@ async def main():
         model, tools
     )
 
-    math_response = await agent.invoke({"messages" : [{"role" : "user", "content" : "What is 2 + 2?"}]})
-    print("Math response : ",math_response['messages'][-1]['content'])
+    math_response = await agent.ainvoke({"messages" : [{"role" : "user", "content" : "What is 2 + 2?"}]})
+    print("Math response : ",math_response['messages'][-1].content)
 
 
 asyncio.run(main())
